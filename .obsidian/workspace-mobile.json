@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aws-saa/study-log.md",
-                "mode": "source",
+                "file": "aws-saa/udemytest-log.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "study-log"
+              "title": "udemytest-log"
             }
           }
         ]
@@ -170,8 +170,10 @@
   },
   "active": "463d0de71df5c509",
   "lastOpenFiles": [
-    "aws-saa/udemytest-log.md",
     "aws-saa/study-log.md",
+    "aws-saa/udemytest-log.md",
+    "aws-saa/0405.md",
+    "aws-saa/0404.md",
     "aws-saa/0403.md",
     "aws-saa/day02.md",
     "aws-saa/day01.md",
