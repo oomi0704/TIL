@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "aws-saa/udemytest-log.md",
-                "mode": "preview",
+                "file": "aws-saa/study-log.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "udemytest-log"
+              "title": "study-log"
+            }
+          },
+          {
+            "id": "ca8e54e587638b2d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "aws-saa/study-log.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "study-log"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -112,7 +127,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "aws-saa/day01.md",
+            "file": "aws-saa/study-log.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -168,15 +183,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "463d0de71df5c509",
+  "active": "ca8e54e587638b2d",
   "lastOpenFiles": [
-    "aws-saa/study-log.md",
-    "aws-saa/udemytest-log.md",
     "aws-saa/0405.md",
+    "aws-saa/0406.md",
+    "aws-saa/study-log.md",
+    "Untitled",
+    "aws-saa/udemytest-log.md",
     "aws-saa/0404.md",
     "aws-saa/0403.md",
     "aws-saa/day02.md",
-    "aws-saa/day01.md",
-    "Untitled"
+    "aws-saa/day01.md"
   ]
 }
