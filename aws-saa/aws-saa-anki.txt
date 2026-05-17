@@ -1,0 +1,77 @@
+#separator:tab
+#html:true
+#deck:AWS SAA-C03
+#notetype:Basic
+#columns:Front	Back	Tags
+EC2の購入オプション4種とそれぞれの用途は？	<b>オンデマンド</b>：短期・不定期<br><b>リザーブド</b>：1〜3年の長期利用でコスト削減<br><b>スポット</b>：中断可能なバッチ処理<br><b>Savings Plans</b>：柔軟なコミットメント型割引	aws-saa computing
+Auto Scalingの3つのポリシーは？	<b>ターゲット追跡</b>：CPU等を目標値に保つ<br><b>ステップ</b>：段階的にスケール<br><b>スケジュール</b>：時間ベースで事前スケール	aws-saa computing
+ELBの3種類（ALB / NLB / GLB）と用途は？	<b>ALB</b>：HTTP/HTTPS、パスベースルーティング<br><b>NLB</b>：TCP/UDP、超低レイテンシ<br><b>GLB</b>：サードパーティ仮想アプライアンス	aws-saa networking
+S3の主要ストレージクラスと用途は？	<b>Standard</b>：頻繁アクセス<br><b>IA / One Zone-IA</b>：低頻度<br><b>Glacier / Deep Archive</b>：長期アーカイブ<br><b>Intelligent-Tiering</b>：アクセスパターン不明	aws-saa storage
+EBS・EFS・S3の使い分けは？	<b>EBS</b>：EC2にアタッチするブロックストレージ<br><b>EFS</b>：複数EC2から共有できるファイルストレージ<br><b>S3</b>：オブジェクトストレージ（静的ファイル等）	aws-saa storage
+EBSボリュームタイプ（gp3 / io1・io2 / st1 / sc1）の特徴は？	<b>gp3</b>：汎用SSD、IOPSを独立設定可能<br><b>io1/io2</b>：高IOPS（DB向け）<br><b>st1</b>：スループット最適化HDD（ログ・動画）<br><b>sc1</b>：コールドHDD（低頻度・大容量）	aws-saa storage
+IOPSとスループットの違い・使い分けは？	<b>IOPS</b>：1秒間の読み書き回数 → DBトランザクション<br><b>スループット</b>：MB/sの転送量 → 大容量ファイル転送	aws-saa storage
+RDS Multi-AZとリードレプリカの違いは？	<b>Multi-AZ</b>：可用性向上（フェイルオーバー用）<br><b>リードレプリカ</b>：読み取りパフォーマンス向上	aws-saa database
+Auroraの主な特徴は？	ストレージ自動スケール、グローバルDB（複数リージョン）、MySQL/PostgreSQL互換	aws-saa database
+DynamoDBのキャパシティモードとGSI/LSIの違いは？	<b>オンデマンド</b>：トラフィック予測不能<br><b>プロビジョニング</b>：安定トラフィックでコスト削減<br><b>GSI</b>：別パーティションキーで検索<br><b>LSI</b>：同一パーティションキー・別ソートキー	aws-saa database
+ElastiCache RedisとMemcachedの違いは？	<b>Redis</b>：永続化・レプリケーション・複雑なデータ構造<br><b>Memcached</b>：シンプル・マルチスレッド・水平スケール	aws-saa database
+VPCのIGW・NAT Gateway・ルートテーブルの役割は？	<b>IGW</b>：インターネットへの出入口<br><b>NAT Gateway</b>：プライベートサブネットからのアウトバウンド<br><b>ルートテーブル</b>：サブネット単位でトラフィック制御	aws-saa networking
+セキュリティグループとNACLの主な違いは？	<table><tr><th></th><th>SG</th><th>NACL</th></tr><tr><td>適用</td><td>ENI（インスタンス）</td><td>サブネット</td></tr><tr><td>デフォルト</td><td>全拒否（インバウンド）</td><td>全許可</td></tr><tr><td>ルール</td><td>ステートフル</td><td>ステートレス</td></tr></table>	aws-saa networking
+VPC Peering・Transit Gateway・VPN・Direct Connectの用途は？	<b>VPC Peering</b>：VPC間直接接続（推移的ルーティング不可）<br><b>Transit Gateway</b>：複数VPCのハブ接続<br><b>Site-to-Site VPN</b>：オンプレ暗号化接続（インターネット経由）<br><b>Direct Connect</b>：専用線（高帯域・低レイテンシ）	aws-saa networking
+IAMのポリシー・ロール・AssumeRoleとは？	<b>ポリシー</b>：権限の定義<br><b>ロール</b>：サービス/ユーザーに付与する権限セット<br><b>AssumeRole</b>：一時的に別ロールの権限を取得	aws-saa security
+KMS・Secrets Manager・SSM Parameter Storeの使い分けは？	<b>KMS</b>：暗号化キー管理<br><b>Secrets Manager</b>：DBパスワード等・自動ローテーション<br><b>SSM Parameter Store</b>：設定値・秘匿情報（低コスト）	aws-saa security
+SQS・SNS・EventBridgeの使い分けは？	<b>SQS</b>：キュー（1対1・順番処理）<br><b>SNS</b>：Pub/Sub（1対多・即時配信）<br><b>EventBridge</b>：イベントバス（AWSサービス連携・ルーティング）	aws-saa serverless
+CloudWatch・CloudTrail・AWS Configの役割は？	<b>CloudWatch</b>：メトリクス監視・アラート・ログ<br><b>CloudTrail</b>：APIコール記録・監査<br><b>Config</b>：リソース設定変更履歴・コンプライアンス	aws-saa monitoring
+よく混同するペア：Multi-AZ vs リードレプリカ / Secrets vs SSM / SQS vs SNS	<b>Multi-AZ vs RR</b>：可用性 vs 読み取り性能<br><b>Secrets vs SSM</b>：ローテーション必要 vs 設定値保存<br><b>SQS vs SNS</b>：1対1キュー vs 1対多Pub/Sub<br><b>NAT GW vs NAT Instance</b>：マネージド vs 自己管理<br><b>VPN vs DX</b>：インターネット vs 専用線	aws-saa review
+AWS Global Acceleratorとは？何が特徴か？	エッジからAWSバックボーン経由で最適リージョンへ届けるサービス。<b>Anycast IP</b>（静的グローバルIP×2）、自動フェイルオーバー・ヘルスチェック・重み付けルーティング	aws-saa networking
+Global AcceleratorとCloudFrontの使い分けは？	<table><tr><th></th><th>GA</th><th>CloudFront</th></tr><tr><td>用途</td><td>TCP/UDP低遅延</td><td>HTTPコンテンツ配信</td></tr><tr><td>キャッシュ</td><td>なし</td><td>あり</td></tr><tr><td>向く用途</td><td>ゲーム・VoIP・API・IoT</td><td>静的・動画配信</td></tr><tr><td>IP</td><td>固定（Anycast）</td><td>変動</td></tr></table>	aws-saa networking
+IoTデバイスにGlobal Acceleratorが向く理由は？	MQTT等のTCP/UDPプロトコル、リアルタイム・低遅延が重要、センサーデータはキャッシュ不要のため	aws-saa networking
+CloudFrontとRoute 53の役割の違いは？	<b>CloudFront</b>：CDN（コンテンツ配信・キャッシュ）<br><b>Route 53</b>：DNS（名前解決・ルーティング）<br>例：Route 53で名前解決 → CloudFrontでキャッシュ配信	aws-saa networking
+Route 53のルーティングポリシー5種は？	<b>シンプル</b>：1つのIPを返す<br><b>レイテンシーベース</b>：最も遅延が少ないリージョン<br><b>地理的</b>：ユーザー地域でルーティング<br><b>加重</b>：割合で分散<br><b>フェイルオーバー</b>：障害時スタンバイへ切替	aws-saa networking
+マルチリージョンでのCloudFront活用のポイントは？	CloudFront自体がグローバル（400+エッジ）、<b>オリジンフェイルオーバー</b>、S3マルチリージョンアクセスポイントと組み合わせ、動的コンテンツはRoute 53と組み合わせ	aws-saa networking
+RDSとAuroraの主な違いは？	<table><tr><th></th><th>RDS</th><th>Aurora</th></tr><tr><td>対応DB</td><td>MySQL/PG/Oracle等</td><td>MySQL/PG互換のみ</td></tr><tr><td>ストレージ</td><td>単一AZのEBS</td><td>3AZ×2=6コピー自動複製</td></tr><tr><td>レプリカ</td><td>最大5台</td><td>最大15台</td></tr><tr><td>フェイルオーバー</td><td>約1〜2分</td><td>約30秒以内</td></tr></table>	aws-saa database
+Aurora独自機能3つは？	<b>Aurora Serverless</b>：アクセス量に応じ自動スケール<br><b>Aurora Global Database</b>：複数リージョンへレプリケーション（1秒以内）<br><b>Backtrack</b>：過去の時点に巻き戻し	aws-saa database
+STS AssumeRoleとは？発行される情報は？	一時的に別IAMロールの権限を借りる仕組み。<br>AccessKeyId / SecretAccessKey / SessionToken（有効期限15分〜12時間）	aws-saa security
+AssumeRoleの主なユースケースとAPI種類は？	<b>ユースケース</b>：クロスアカウント、EC2からのアクセス（キー埋め込み不要）、外部ID連携<br><b>API</b>：AssumeRole / AssumeRoleWithWebIdentity / AssumeRoleWithSAML	aws-saa security
+IAMポリシーの種類5つは？	<b>アイデンティティベース</b>：ユーザー/グループ/ロール<br><b>リソースベース</b>：S3バケットポリシー等<br><b>信頼ポリシー</b>：誰がロールを引き受けられるか<br><b>Permission Boundary</b>：権限上限<br><b>SCP</b>：Organizations全体の上限	aws-saa security
+IAM権限の評価順序は？	1. 明示的Deny → 即拒否<br>2. SCPで許可？<br>3. リソースベースで許可？<br>4. Permission Boundaryで許可？<br>5. アイデンティティで許可？<br>6. デフォルトDeny	aws-saa security
+EBSの主な用途と制約は？	EC2にアタッチする仮想HDD。OS・アプリ・設定ファイル格納。<b>単一AZ内のみ</b>アタッチ可能。基本的に1 EC2にのみアタッチ	aws-saa storage
+EBSだけでは不十分でS3・RDSが必要な理由は？	EBSは1 EC2にしかアタッチ困難。<b>S3</b>：大容量・複数EC2・低コスト。<b>RDS</b>：同時書き込み・整合性・自動管理	aws-saa storage
+シングルAZ・マルチAZのSLAと年間ダウンタイム目安は？	<b>99.5%</b>：約43.8時間（シングルAZ）<br><b>99.9%</b>：約8.7時間<br><b>99.99%</b>：約52.6分<br>マルチAZ：SLA 99.95%	aws-saa database
+AWS Transfer Familyとは？	 FTP/SFTP/FTPS/AS2等の従来プロトコルでS3・EFSに転送するマネージドサービス。レガシーとAWSの橋渡し、サーバー管理不要	aws-saa storage
+WAF / CloudFront Geo Restriction / Shieldの使い分けは？	<b>映像×国制限のみ</b> → CloudFront Geo Restriction（追加コストなし）<br><b>国制限＋他ルール</b> → WAF + Geo Match<br><b>SQLi</b> → WAF<br><b>DDoS</b> → CloudFront + WAF + Shield<br>※Geo MatchはWAFの機能（単独不可）	aws-saa security
+リザーブドインスタンスとSavings Plansの違いは？	<b>RI</b>：特定インスタンス予約、柔軟性低、<b>RDSはRI</b><br><b>Savings Plans</b>：利用金額コミット、EC2/Lambda/Fargate、AWS推奨<br>Convertible RIはタイプ変更可だが割引率低	aws-saa computing
+Transfer Familyとデータ移行サービスの使い分けは？	<b>Transfer Family</b>：SFTP/FTP等でS3/EFS接続<br><b>DataSync</b>：オンプレ→AWS定期同期<br><b>Snowball</b>：ネット困難・PB級物理移行<br><b>DMS</b>：DB移行・レプリケーション<br><b>Storage Gateway</b>：ハイブリッド常時接続<br>→ SFTPが出たらTransfer Family	aws-saa storage
+デプロイ戦略4種（Canary / Blue-Green / Rolling / All at once）は？	<b>Canary</b>：一部ユーザーのみ新バージョン<br><b>Blue/Green</b>：新旧環境丸ごと切替、ロールバック簡単（コスト高）<br><b>Rolling</b>：少しずつ順次更新<br><b>All at once</b>：一気に全部（速いがリスク高）	aws-saa devops
+EC2スケーリング用語4つ（アウト/イン・アップ/ダウン）は？	<b>スケールアウト</b>：インスタンス増やす<br><b>スケールイン</b>：減らす<br><b>スケールアップ</b>：大きくする<br><b>スケールダウン</b>：小さくする	aws-saa computing
+GuardDuty・Inspector・Macieの役割は？	<b>GuardDuty</b>：不正アクセス・異常行動検知<br><b>Inspector</b>：EC2/Lambda等の脆弱性スキャン<br><b>Macie</b>：S3内の個人情報・機密データ検出	aws-saa security
+PITRとスナップショットの違いは？	<table><tr><th></th><th>PITR</th><th>スナップショット</th></tr><tr><td>粒度</td><td>秒単位任意時刻</td><td>取得時点のみ</td></tr><tr><td>方式</td><td>自動・継続</td><td>手動orスケジュール</td></tr><tr><td>主なサービス</td><td>DynamoDB/RDS/Aurora</td><td>EBS/RDS/Aurora</td></tr></table>	aws-saa database
+災害復旧戦略4段階（RTO/RPOとコスト順）は？	<b>Backup & Restore</b>：安い、スナップショット復元<br><b>Pilot Light</b>：最小環境常時起動<br><b>Warm Standby</b>：縮小版本番常時起動<br><b>Multi-Site</b>：完全本番を複数起動（最高コスト）<br><b>RTO</b>：復旧速度 / <b>RPO</b>：どこまで遡るか	aws-saa database
+インスタンスストアとEBSの違いは？	<table><tr><th></th><th>インスタンスストア</th><th>EBS</th></tr><tr><td>永続性</td><td>一時的</td><td>永続的</td></tr><tr><td>速度</td><td>爆速</td><td>普通</td></tr><tr><td>停止後</td><td>データ消える</td><td>残る</td></tr><tr><td>用途</td><td>キャッシュ・一時</td><td>OS・DB・重要データ</td></tr></table>	aws-saa storage
+SPA（Single Page Application）の特徴とAWS典型構成は？	1回HTML読込後JSで画面更新（Gmail等）。<br>典型：<b>S3</b>ホスティング + <b>CloudFront</b> + <b>API Gateway</b> + <b>Lambda</b>	aws-saa serverless
+AWS Amplifyは何に使う？	SPA等フロントを簡単デプロイ。S3・CloudFront・HTTPS・CI/CDを自動構築。React/Vue/Next.js等対応。「素早くフロントデプロイ」→ Amplify	aws-saa serverless
+2026-05-13 キーワード判断まとめ	SFTP→Transfer Family / 固定IP・UDP→GA / キャッシュ→CloudFront / 個人情報→Macie / 脆弱性→Inspector / 不正検知→GuardDuty / フロント→Amplify	aws-saa review
+ENI（Elastic Network Interface）とは？	EC2にアタッチする仮想NIC。プライベートIP・EIP・MAC・SGを持つ。特定AZに紐づく。1インスタンスに複数ENI可能	aws-saa networking
+EFSとFSx（Windows / Lustre）の使い分けは？	<b>EFS</b>：Linux・NFS・汎用共有・自動拡張<br><b>FSx Windows</b>：Windows・SMB・AD連携<br><b>FSx Lustre</b>：ML・HPC・S3直接連携	aws-saa storage
+Egress-Only Internet Gatewayとは？	<b>IPv6専用</b>の送信専用GW。アウトバウンドのみ許可、インバウンド拒否。IPv4のNAT Gatewayに相当するIPv6版	aws-saa networking
+Direct ConnectとSite-to-Site VPNの比較は？	<table><tr><th></th><th>DX</th><th>VPN</th></tr><tr><td>回線</td><td>専用線</td><td>インターネット</td></tr><tr><td>速度</td><td>高速安定</td><td>変動</td></tr><tr><td>暗号化</td><td>なし（別途）</td><td>IPsec自動</td></tr><tr><td>導入</td><td>数週〜数ヶ月</td><td>数時間〜数日</td></tr><tr><td>コスト</td><td>高</td><td>安</td></tr></table>	aws-saa networking
+その他の接続サービス（Client VPN / CloudHub / Peering / TGW / PrivateLink）は？	<b>Client VPN</b>：個人PC↔AWS<br><b>VPN CloudHub</b>：複数拠点をAWS経由<br><b>VPC Peering</b>：VPC同士<br><b>Transit Gateway</b>：複数VPCハブ接続<br><b>PrivateLink</b>：サービス単位のプライベート接続	aws-saa networking
+Cost Anomaly DetectionとAWS Budgetsの違いは？	<b>Cost Anomaly Detection</b>：MLでコスト異常を自動検知、メール/SNS通知<br><b>Budgets</b>：手動で閾値設定	aws-saa cost
+Kinesis Data StreamsとFirehoseの使い分けは？	<table><tr><th></th><th>Streams</th><th>Firehose</th></tr><tr><td>リアルタイム</td><td>ミリ秒</td><td>準リアルタイム</td></tr><tr><td>管理</td><td>手動シャード</td><td>フルマネージド</td></tr><tr><td>保持</td><td>最大365日</td><td>なし</td></tr><tr><td>宛先</td><td>自由</td><td>S3/Redshift等固定</td></tr></table>	aws-saa analytics
+DAXとElastiCacheの使い分けは？	<b>DAX</b>：DynamoDB専用、ミリ秒→マイクロ秒、読み取り集中向け<br><b>ElastiCache</b>：RDS等のキャッシュ。Redis（永続化・マルチAZ）vs Memcached（シンプル・水平）	aws-saa database
+NoSQLの選択肢（DynamoDB / DocumentDB / Neptune / Timestream / QLDB）は？	<b>DynamoDB</b>：大規模Key-Value<br><b>DocumentDB</b>：ドキュメント<br><b>Neptune</b>：グラフ<br><b>Timestream</b>：時系列<br><b>QLDB</b>：台帳	aws-saa database
+AuroraとAurora Serverless v2の使い分けは？	<b>Aurora</b>：常時起動・固定キャパ・安定トラフィック<br><b>Serverless v2</b>：自動スケール・予測不能・開発環境向け	aws-saa database
+EBS：HDD系の制約とio3について	<b>st1/sc1</b>はブートボリュームに使用不可。<b>io3は存在しない</b>（試験トラップ）	aws-saa storage
+EBS Multi-Attachの条件は？	<b>io1/io2のみ</b>。同一AZ内・最大16インスタンス。クラスタ対応ファイルシステムが必要	aws-saa storage
+EBS RAID0とRAID1の違いは？	<b>RAID0</b>：パフォーマンス最大化、冗長性なし<br><b>RAID1</b>：ミラーリング、冗長性あり	aws-saa storage
+S3転送高速化3サービスの使い分けは？	<b>Transfer Acceleration</b>：S3アップロード高速化（エッジ経由）<br><b>CloudFront</b>：S3ダウンロード高速化<br><b>Global Accelerator</b>：EC2/ALBへ・固定Anycast IP	aws-saa storage
+ECSとEKSの比較・選び方は？	<table><tr><th></th><th>ECS</th><th>EKS</th></tr><tr><td>基盤</td><td>AWS独自</td><td>Kubernetes</td></tr><tr><td>学習コスト</td><td>低</td><td>高</td></tr><tr><td>移植性</td><td>AWS依存</td><td>マルチクラウド</td></tr></table>K8s・マルチクラウド→EKS / シンプル→ECS / サーバー不要→Fargate	aws-saa compute
+2026-05-14 キーワード判断まとめ	DynamoDBキャッシュ→DAX / RDSキャッシュ→ElastiCache(Redis) / S3アップロード→Transfer Acceleration / EC2固定IP→GA / オンプレ安定→DX / 簡単→VPN / K8s→EKS / シンプル→ECS+Fargate	aws-saa review
+Standard-IAとGlacier Instant Retrievalの違いは？	<table><tr><th></th><th>Standard-IA</th><th>Glacier Instant</th></tr><tr><td>用途</td><td>低頻度・即時取得</td><td>超低頻度アーカイブ・即時</td></tr><tr><td>最小保存</td><td>30日</td><td>90日</td></tr><tr><td>取得料</td><td>あり</td><td>高め</td></tr></table>	aws-saa storage
+Intelligent-Tieringの特徴と試験ポイントは？	アクセスパターン<b>予測不能</b>向け。監視料あり、<b>取得料無料</b>。内部Tierで自動移動。<br>不明→Intelligent-Tiering / 取得料払いたくない→同 / 月1回低頻度→Standard-IA / 年1-2回即時→Glacier Instant	aws-saa storage
+gp2とgp3の違いは？	<table><tr><th></th><th>gp2</th><th>gp3</th></tr><tr><td>IOPS</td><td>サイズ連動(3/GB)</td><td>独立設定</td></tr><tr><td>コスト</td><td>普通</td><td>約20%安（推奨）</td></tr></table>	aws-saa storage
+io1とio2の違い・試験ポイントは？	<b>io2</b>：耐久性99.999%（5ナイン）、IOPS/GB最大500:1<br>コスパ一般→gp3 / 64,000 IOPS→io1/io2 / Multi-Attach→io1/io2 / 最高耐久→io2	aws-saa storage
+SGとNACLの詳細比較（試験向け）は？	<table><tr><th></th><th>SG</th><th>NACL</th></tr><tr><td>レベル</td><td>インスタンス</td><td>サブネット</td></tr><tr><td>状態</td><td>ステートフル</td><td>ステートレス</td></tr><tr><td>ルール</td><td>許可のみ</td><td>許可・拒否</td></tr></table>特定IP拒否→NACL / VPC全体→Network Firewall	aws-saa networking
+NACLステートレスで忘れがちなことは？	レスポンスのアウトバウンドも<b>別途明示許可</b>が必要。エフェメラルポート（1024-65535）の許可を忘れない	aws-saa networking
+VPCエンドポイント：ゲートウェイ型とインターフェース型の違いは？	<b>ゲートウェイ型</b>：S3・DynamoDBのみ、<b>無料</b>、ルートテーブル、オンプレ不可<br><b>インターフェース型（PrivateLink）</b>：ほぼ全サービス、有料、ENI作成、オンプレ可（DX/VPN経由）	aws-saa networking
+VPCエンドポイント試験シナリオの答えは？	S3・コスト最小→ゲートウェイ型<br>CloudWatchプライベート→インターフェース型<br>自社SaaS公開→PrivateLink+NLB<br>オンプレからAWSサービス→インターフェース型	aws-saa networking
+Lambda Function URLとAPI Gatewayの使い分けは？	<b>Function URL</b>：単一Lambda・Lambda料金のみ・IAM or なし・throttling/WAF/カスタムドメインなし<br><b>API Gateway</b>：複数Lambda・throttling/WAF/Cognito/キャッシュあり・高コスト<br>Webhookのみ→Function URL / WAF等必要→API Gateway	aws-saa serverless
