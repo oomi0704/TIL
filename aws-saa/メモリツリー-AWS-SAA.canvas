@@ -1,0 +1,452 @@
+{
+	"nodes": [
+		{
+			"id": "title",
+			"type": "text",
+			"text": "# AWS SAA メモリツリー\n\n**使い方**: 矢印を辿ってサービスを決める\n\n詳細: [[メモリツリー-AWS-SAA]]",
+			"x": -200,
+			"y": -400,
+			"width": 400,
+			"height": 180,
+			"color": "6"
+		},
+		{
+			"id": "g1",
+			"type": "group",
+			"label": "§1 接続",
+			"x": -1400,
+			"y": -200,
+			"width": 520,
+			"height": 520,
+			"color": "5"
+		},
+		{
+			"id": "c1q",
+			"type": "text",
+			"text": "**誰と誰？**",
+			"x": -1360,
+			"y": -160,
+			"width": 120,
+			"height": 60
+		},
+		{
+			"id": "c1a",
+			"type": "text",
+			"text": "オンプレ↔AWS\n・早い安い → **VPN**\n・専用線 → **DX**",
+			"x": -1360,
+			"y": -60,
+			"width": 200,
+			"height": 120,
+			"color": "4"
+		},
+		{
+			"id": "c1b",
+			"type": "text",
+			"text": "VPC↔VPC\n・2つ → **Peering**\n・多数 → **TGW**",
+			"x": -1120,
+			"y": -60,
+			"width": 200,
+			"height": 120,
+			"color": "4"
+		},
+		{
+			"id": "c1c",
+			"type": "text",
+			"text": "VPC↔S3等\n・無料 → **GW Endpoint**\n・他 → **IF Endpoint**",
+			"x": -1360,
+			"y": 100,
+			"width": 220,
+			"height": 120,
+			"color": "4"
+		},
+		{
+			"id": "c1d",
+			"type": "text",
+			"text": "IP拒否 → **NACL**\nインスタンス → **SG**",
+			"x": -1100,
+			"y": 100,
+			"width": 180,
+			"height": 100,
+			"color": "3"
+		},
+		{
+			"id": "g2",
+			"type": "group",
+			"label": "§2 ストレージ・S3",
+			"x": -700,
+			"y": -200,
+			"width": 520,
+			"height": 560,
+			"color": "2"
+		},
+		{
+			"id": "s2q",
+			"type": "text",
+			"text": "**S3クラス**",
+			"x": -660,
+			"y": -160,
+			"width": 120,
+			"height": 50
+		},
+		{
+			"id": "s2a",
+			"type": "text",
+			"text": "パターン不明\n→ **Intelligent-Tiering**",
+			"x": -660,
+			"y": -80,
+			"width": 200,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "s2b",
+			"type": "text",
+			"text": "月1回・即時\n→ **Standard-IA**",
+			"x": -420,
+			"y": -80,
+			"width": 180,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "s2c",
+			"type": "text",
+			"text": "年1回・即時\n→ **Glacier Instant**",
+			"x": -660,
+			"y": 40,
+			"width": 200,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "s2d",
+			"type": "text",
+			"text": "最安・ほぼ読まない\n→ **Deep Archive**",
+			"x": -420,
+			"y": 40,
+			"width": 200,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "s2e",
+			"type": "text",
+			"text": "EBS: 汎用 **gp3**\n高IOPS **io2**\nオブジェクト **S3**",
+			"x": -660,
+			"y": 160,
+			"width": 440,
+			"height": 100,
+			"color": "3"
+		},
+		{
+			"id": "g3",
+			"type": "group",
+			"label": "§3 データベース",
+			"x": 0,
+			"y": -200,
+			"width": 480,
+			"height": 480,
+			"color": "1"
+		},
+		{
+			"id": "d3q",
+			"type": "text",
+			"text": "**SQL?**",
+			"x": 40,
+			"y": -160,
+			"width": 100,
+			"height": 50
+		},
+		{
+			"id": "d3a",
+			"type": "text",
+			"text": "YES\n安い → RDS\n速い → **Aurora**",
+			"x": 40,
+			"y": -80,
+			"width": 160,
+			"height": 100,
+			"color": "4"
+		},
+		{
+			"id": "d3b",
+			"type": "text",
+			"text": "NO\n→ **DynamoDB** 等",
+			"x": 240,
+			"y": -80,
+			"width": 160,
+			"height": 80,
+			"color": "4"
+		},
+		{
+			"id": "d3c",
+			"type": "text",
+			"text": "守る → **Multi-AZ**\n読む → **RR**",
+			"x": 40,
+			"y": 40,
+			"width": 200,
+			"height": 90,
+			"color": "3"
+		},
+		{
+			"id": "d3d",
+			"type": "text",
+			"text": "Dynamo → **DAX**\nRDS → **Redis**",
+			"x": 40,
+			"y": 160,
+			"width": 200,
+			"height": 90,
+			"color": "3"
+		},
+		{
+			"id": "g4",
+			"type": "group",
+			"label": "§4 配信・DNS",
+			"x": 600,
+			"y": -200,
+			"width": 440,
+			"height": 400,
+			"color": "6"
+		},
+		{
+			"id": "n4a",
+			"type": "text",
+			"text": "DNS → **Route 53**",
+			"x": 640,
+			"y": -140,
+			"width": 180,
+			"height": 70,
+			"color": "4"
+		},
+		{
+			"id": "n4b",
+			"type": "text",
+			"text": "HTTP・キャッシュ\n→ **CloudFront**",
+			"x": 840,
+			"y": -140,
+			"width": 180,
+			"height": 80,
+			"color": "4"
+		},
+		{
+			"id": "n4c",
+			"type": "text",
+			"text": "TCP/UDP・固定IP\n→ **Global Accelerator**",
+			"x": 640,
+			"y": -20,
+			"width": 360,
+			"height": 80,
+			"color": "4"
+		},
+		{
+			"id": "n4d",
+			"type": "text",
+			"text": "暗記: DNS=R53 / HTTP=CF / TCP=GA",
+			"x": 640,
+			"y": 100,
+			"width": 360,
+			"height": 60,
+			"color": "3"
+		},
+		{
+			"id": "g5",
+			"type": "group",
+			"label": "§5 計算・サーバーレス",
+			"x": -1400,
+			"y": 400,
+			"width": 520,
+			"height": 400,
+			"color": "4"
+		},
+		{
+			"id": "p5a",
+			"type": "text",
+			"text": "15分以内 → **Lambda**\n15分超 → **Batch**",
+			"x": -1360,
+			"y": 450,
+			"width": 220,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "p5b",
+			"type": "text",
+			"text": "1対1 → **SQS**\n1対多 → **SNS**",
+			"x": -1100,
+			"y": 450,
+			"width": 180,
+			"height": 90,
+			"color": "4"
+		},
+		{
+			"id": "p5c",
+			"type": "text",
+			"text": "K8s → **EKS**\nシンプル → **ECS**",
+			"x": -1360,
+			"y": 580,
+			"width": 440,
+			"height": 70,
+			"color": "3"
+		},
+		{
+			"id": "g6",
+			"type": "group",
+			"label": "§6 セキュリティ",
+			"x": -700,
+			"y": 400,
+			"width": 400,
+			"height": 320,
+			"color": "1"
+		},
+		{
+			"id": "sec6",
+			"type": "text",
+			"text": "不正 → **GuardDuty**\n脆弱性 → **Inspector**\n個人情報 → **Macie**\n\nローテ → **Secrets Manager**",
+			"x": -660,
+			"y": 450,
+			"width": 320,
+			"height": 200,
+			"color": "4"
+		},
+		{
+			"id": "g7",
+			"type": "group",
+			"label": "§7 移行・キーワード",
+			"x": 0,
+			"y": 400,
+			"width": 1040,
+			"height": 360,
+			"color": "3"
+		},
+		{
+			"id": "m7a",
+			"type": "text",
+			"text": "**SFTP** → Transfer Family\n**Kafka** → MSK\n**35日超** → 手動SS",
+			"x": 40,
+			"y": 450,
+			"width": 280,
+			"height": 120,
+			"color": "4"
+		},
+		{
+			"id": "m7b",
+			"type": "text",
+			"text": "DR: Backup → Pilot → Warm → Multi",
+			"x": 360,
+			"y": 450,
+			"width": 280,
+			"height": 80,
+			"color": "3"
+		},
+		{
+			"id": "m7c",
+			"type": "file",
+			"file": "教科書-AWS-SAA.md",
+			"x": 680,
+			"y": 440,
+			"width": 320,
+			"height": 200,
+			"color": "5"
+		},
+		{
+			"id": "m7d",
+			"type": "file",
+			"file": "メモリツリー-AWS-SAA.md",
+			"x": 360,
+			"y": 560,
+			"width": 320,
+			"height": 160,
+			"color": "5"
+		}
+	],
+	"edges": [
+		{
+			"id": "e-title-g1",
+			"fromNode": "title",
+			"fromSide": "left",
+			"toNode": "g1",
+			"toSide": "right",
+			"label": "接続"
+		},
+		{
+			"id": "e-title-g2",
+			"fromNode": "title",
+			"fromSide": "bottom",
+			"toNode": "g2",
+			"toSide": "top",
+			"label": "保存"
+		},
+		{
+			"id": "e-title-g3",
+			"fromNode": "title",
+			"fromSide": "right",
+			"toNode": "g3",
+			"toSide": "left",
+			"label": "DB"
+		},
+		{
+			"id": "e-title-g4",
+			"fromNode": "title",
+			"fromSide": "right",
+			"toNode": "g4",
+			"toSide": "left",
+			"label": "配信"
+		},
+		{
+			"id": "e-c1q-a",
+			"fromNode": "c1q",
+			"toNode": "c1a",
+			"label": "オンプレ"
+		},
+		{
+			"id": "e-c1q-b",
+			"fromNode": "c1q",
+			"toNode": "c1b",
+			"label": "VPC"
+		},
+		{
+			"id": "e-s2q-a",
+			"fromNode": "s2q",
+			"toNode": "s2a",
+			"label": "不明"
+		},
+		{
+			"id": "e-s2q-b",
+			"fromNode": "s2q",
+			"toNode": "s2b",
+			"label": "月1"
+		},
+		{
+			"id": "e-d3q-a",
+			"fromNode": "d3q",
+			"toNode": "d3a",
+			"label": "YES"
+		},
+		{
+			"id": "e-d3q-b",
+			"fromNode": "d3q",
+			"toNode": "d3b",
+			"label": "NO"
+		},
+		{
+			"id": "e-title-g5",
+			"fromNode": "title",
+			"fromSide": "bottom",
+			"toNode": "g5",
+			"toSide": "top"
+		},
+		{
+			"id": "e-title-g6",
+			"fromNode": "title",
+			"fromSide": "bottom",
+			"toNode": "g6",
+			"toSide": "top"
+		},
+		{
+			"id": "e-title-g7",
+			"fromNode": "title",
+			"fromSide": "bottom",
+			"toNode": "g7",
+			"toSide": "top"
+		}
+	]
+}
