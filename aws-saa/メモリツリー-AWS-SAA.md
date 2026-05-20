@@ -1,52 +1,11 @@
 # AWS SAA メモリツリー（暗記用）
 
-> 教科書の要約版。**上から順に枝を辿る**と答えに着く
-
-## Obsidianで図形として見る
-
-| 方法 | 操作 |
-|------|------|
-| **Canvas（白板）** | [[メモリツリー-AWS-SAA.canvas]] を開く → ズーム・ドラッグで全体を俯瞰 |
-| **Mermaid（本文中）** | 本ノートを **閲覧モード** または **ライブプレビュー** にする → 下の `mermaid` ブロックが自動で図になる |
-| 埋め込み | 別ノートに `![[メモリツリー-AWS-SAA.canvas]]` と書くと Canvas を埋め込める |
-
-> Mermaid が文字のまま見える場合：**設定 → コアプラグイン → Mermaid** がオンか確認
+> 教科書の要約版。**上から順に枝を辿る**と答えに着く  
+> 使い方：問題文のキーワードを見つける → 該当ツリーの ▼ を辿る
 
 ---
 
 ## 🌳 マスターツリー（最初に見る）
-
-```mermaid
-flowchart TB
-    ROOT["AWS SAA<br>何の問題？"]
-
-    ROOT --> Q1["§1 何を繋ぐ？"]
-    ROOT --> Q2["§2 何を保存？"]
-    ROOT --> Q3["§3 何のDB？"]
-    ROOT --> Q4["§4 配信・DNS？"]
-    ROOT --> Q5["§5 どう処理？"]
-    ROOT --> Q6["§6 どう守る？"]
-    ROOT --> Q7["§7 どう移す？"]
-    ROOT --> Q8["§8 キーワード反射"]
-
-    Q1 --> A1["接続ツリー"]
-    Q2 --> A2["ストレージ・S3"]
-    Q3 --> A3["DB・キャッシュ"]
-    Q4 --> A4["R53 / CF / GA"]
-    Q5 --> A5["EC2・Lambda・K8s"]
-    Q6 --> A6["IAM・3兄弟"]
-    Q7 --> A7["移行・DR"]
-    Q8 --> A8["即答表"]
-
-    style ROOT fill:#6b4c9a,color:#fff
-    style Q1 fill:#4a90a4,color:#fff
-    style Q2 fill:#c47d2a,color:#fff
-    style Q3 fill:#c44a4a,color:#fff
-    style Q4 fill:#6b4c9a,color:#fff
-```
-
-<details>
-<summary>テキスト版（コピー用）</summary>
 
 ```
 AWS SAA
@@ -60,45 +19,9 @@ AWS SAA
 └─【キーワードだけ？】→ 反射表 §8
 ```
 
-</details>
-
 ---
 
 ## §1 接続ツリー「誰と誰をつなぐ？」
-
-```mermaid
-flowchart TD
-    START["接続: 誰と誰？"]
-
-    START --> ONPREM{"オンプレ ↔ AWS？"}
-    ONPREM -->|インターネット・早い・安い| VPN["Site-to-Site VPN"]
-    ONPREM -->|専用線・安定・高速| DX["Direct Connect"]
-    ONPREM -->|最強| DXVPN["DX + VPN"]
-    ONPREM -->|個人PCのみ| CVPN["Client VPN"]
-
-    START --> VPC{"VPC ↔ VPC？"}
-    VPC -->|2つのみ| PEER["VPC Peering<br>※推移不可"]
-    VPC -->|多数・ハブ| TGW["Transit Gateway"]
-
-    START --> SVC{"VPC ↔ AWSサービス？"}
-    SVC -->|S3 or DynamoDB・無料| GW["Gateway Endpoint"]
-    SVC -->|その他・オンプレからも| IF["Interface Endpoint"]
-    SVC -->|自社SaaS公開| PL["PrivateLink + NLB"]
-    SVC -->|外部API| NAT["NAT Gateway"]
-
-    START --> ACL{"トラフィック制御"}
-    ACL -->|IP拒否| NACL["NACL"]
-    ACL -->|インスタンス単位| SG["Security Group"]
-    ACL -->|VPC全体| NFW["Network Firewall"]
-
-    style START fill:#4a90a4,color:#fff
-    style VPN fill:#2d6a4f,color:#fff
-    style DX fill:#2d6a4f,color:#fff
-    style GW fill:#2d6a4f,color:#fff
-```
-
-<details>
-<summary>テキスト版</summary>
 
 ```
 接続
@@ -124,8 +47,6 @@ flowchart TD
 └─ 外部インターネットAPI（Google等）？
     └─ NAT Gateway（PrivateLinkでは不可）
 ```
-
-</details>
 
 ### 暗記フレーズ
 > **「オンプレVPN、専用線DX、VPCはPeeringかTGW、S3は無料GW」**
@@ -173,32 +94,6 @@ IPv6でプライベートから外へ出すだけ
 
 ### 2-2 S3クラス（試験最頻出）
 
-```mermaid
-flowchart TD
-    S3["S3クラス選び"]
-
-    S3 --> FREQ{"アクセス頻度？"}
-    FREQ -->|高い| STD["Standard"]
-    FREQ -->|月1回・即時| IA["Standard-IA<br>最小30日"]
-    FREQ -->|年1-2回・即時| GI["Glacier Instant<br>最小90日"]
-    FREQ -->|不明★| IT["Intelligent-Tiering"]
-
-    S3 --> FEE{"取得料金を払いたくない？"}
-    FEE -->|YES| IT
-
-    S3 --> CHEAP{"最安・ほぼ読まない？"}
-    CHEAP -->|YES| DEEP["Glacier Deep Archive"]
-
-    S3 --> AUDIT{"コンプライアンス監査？"}
-    AUDIT -->|YES| IA
-
-    style IT fill:#c47d2a,color:#fff
-    style S3 fill:#c47d2a,color:#fff
-```
-
-<details>
-<summary>テキスト版</summary>
-
 ```
 S3クラス選び
 │
@@ -221,8 +116,6 @@ S3クラス選び
 └─ ⑤ コンプライアンス監査？
     └─ Standard-IA（定期アクセス＝頻度は自然と高い）
 ```
-
-</details>
 
 ### S3暗記フレーズ
 > **「不明はIT、月1はIA、年1即時はGI、最安はDeep」**
@@ -264,40 +157,6 @@ EC2のディスク
 ## §3 DBツリー「SQL？NoSQL？何の用途？」
 
 ### 3-1 最初の分岐
-
-```mermaid
-flowchart TD
-    DB["DB選び"]
-
-    DB --> SQL{"SQL？"}
-    SQL -->|YES| RDS["コスト → RDS"]
-    SQL -->|YES| AUR["性能 → Aurora ★"]
-    SQL -->|YES| ASL["変動 → Aurora Serverless"]
-    SQL -->|NO| DDB["DynamoDB"]
-    SQL -->|NO| DOC["DocumentDB"]
-    SQL -->|NO| NEP["Neptune"]
-    SQL -->|NO| TS["Timestream"]
-    SQL -->|NO| QL["QLDB"]
-
-    DB --> REP{"RDS複製の目的？"}
-    REP -->|可用性| MAZ["Multi-AZ<br>マルチは守る"]
-    REP -->|読取| RR["Read Replica<br>レプリは読む"]
-
-    DB --> CACHE{"キャッシュ？"}
-    CACHE -->|DynamoDB| DAX["DAX"]
-    CACHE -->|RDS・セッション| RED["ElastiCache Redis"]
-
-    DB --> BACK{"いつまで戻す？"}
-    BACK -->|35日以内| PITR["PITR"]
-    BACK -->|35日超| SS["手動スナップショット"]
-
-    style AUR fill:#c44a4a,color:#fff
-    style MAZ fill:#c44a4a,color:#fff
-    style DAX fill:#c44a4a,color:#fff
-```
-
-<details>
-<summary>テキスト版</summary>
 
 ```
 DB
@@ -363,37 +222,9 @@ DynamoDB
 └─ 安定・安く → プロビジョニング
 ```
 
-</details>
-
 ---
 
 ## §4 CDN・DNS・加速ツリー
-
-```mermaid
-flowchart LR
-    Q["配信・名前解決"]
-
-    Q --> DNS["名前解決・DNS<br>Route 53"]
-    Q --> HTTP["HTTP・キャッシュ<br>CloudFront"]
-    Q --> TCP["TCP/UDP・固定IP<br>Global Accelerator"]
-
-    DNS --> D1["シンプル"]
-    DNS --> D2["レイテンシー"]
-    DNS --> D3["Geolocation"]
-    DNS --> D4["Weighted"]
-    DNS --> D5["フェイルオーバー"]
-
-    HTTP --> GEO["国制限のみ<br>Geo Restriction"]
-
-    TCP --> IOT["IoT・MQTT・ゲーム"]
-
-    style DNS fill:#6b4c9a,color:#fff
-    style HTTP fill:#6b4c9a,color:#fff
-    style TCP fill:#6b4c9a,color:#fff
-```
-
-<details>
-<summary>テキスト版</summary>
 
 ```
 配信・名前解決・経路
@@ -417,8 +248,6 @@ flowchart LR
 暗記：「DNSはR53、HTTPはCF、TCPはGA」
 ```
 
-</details>
-
 ### CloudFront vs Redis（2段キャッシュ）
 
 ```
@@ -439,49 +268,6 @@ flowchart LR
 ---
 
 ## §5 計算・サーバーレス・ストリーム
-
-```mermaid
-flowchart TB
-    subgraph EC2["EC2"]
-        E1["短期 → On-Demand"]
-        E2["長期EC2 → Savings Plans"]
-        E3["長期RDS → RI"]
-        E4["中断OK → Spot"]
-        E5["Fleet → capacity-optimized"]
-    end
-
-    subgraph LB["ELB"]
-        L1["HTTP → ALB"]
-        L2["TCP/UDP → NLB"]
-    end
-
-    subgraph SERVERLESS["サーバーレス"]
-        S1{"15分以内？"}
-        S1 -->|YES| LAM["Lambda"]
-        S1 -->|NO| BAT["AWS Batch"]
-        S2["Webhook → Function URL"]
-        S3["WAF等 → API Gateway"]
-    end
-
-    subgraph MSG["メッセージ"]
-        M1["1対1 → SQS"]
-        M2["1対多 → SNS"]
-        M3["イベント → EventBridge"]
-    end
-
-    subgraph STREAM["ストリーム"]
-        ST1["Kafka移行 → MSK"]
-        ST2["ミリ秒 → Kinesis Streams"]
-        ST3["配送 → Firehose"]
-        ST4["分析 → Flink"]
-    end
-
-    subgraph CTR["コンテナ"]
-        C1["K8s → EKS + IRSA"]
-        C2["シンプル → ECS"]
-        C3["Pod共有 → EFS"]
-    end
-```
 
 ### 5-1 EC2購入
 
@@ -584,28 +370,6 @@ SPA・フロント
 
 ## §6 セキュリティツリー
 
-```mermaid
-flowchart TD
-    SEC["セキュリティ"]
-
-    SEC --> IAM["IAM"]
-    IAM --> I1["権限 → Policy"]
-    IAM --> I2["付与 → Role"]
-    IAM --> I3["一時 → AssumeRole<br>Denyが王様"]
-
-    SEC --> SECRET["秘密"]
-    SECRET --> K["鍵 → KMS"]
-    SECRET --> SM["ローテ → Secrets Manager"]
-    SECRET --> P["設定 → SSM"]
-
-    SEC --> DETECT["検知3兄弟"]
-    DETECT --> G["不正 → GuardDuty"]
-    DETECT --> INS["脆弱性 → Inspector"]
-    DETECT --> MAC["個人情報 → Macie"]
-
-    style DETECT fill:#c44a4a,color:#fff
-```
-
 ### 6-1 IAM
 
 ```
@@ -647,30 +411,6 @@ IAM
 
 ### 7-1 データ移行
 
-```mermaid
-flowchart TD
-    MOVE["データを移す"]
-
-    MOVE -->|SFTP★| TF["Transfer Family"]
-    MOVE -->|ファイル同期| DS["DataSync"]
-    MOVE -->|DB| DMS["DMS"]
-    MOVE -->|PB級・ネット弱| SB["Snowball"]
-    MOVE -->|常時ハイブリッド| SG["Storage Gateway"]
-    MOVE -->|S3アップロード高速| TA["Transfer Acceleration"]
-
-    DR["災害復旧 安→高"]
-    DR --> B["Backup & Restore"]
-    B --> P["Pilot Light"]
-    P --> W["Warm Standby"]
-    W --> M["Multi-Site"]
-
-    style TF fill:#c47d2a,color:#fff
-    style MOVE fill:#c47d2a,color:#fff
-```
-
-<details>
-<summary>テキスト版</summary>
-
 ```
 データを移す
 │
@@ -707,44 +447,42 @@ Backup & Restore
 暗記：「バック→パイロ→ウォーム→マルチ」
 ```
 
-</details>
-
 ---
 
 ## §8 反射表（キーワード→即答）
 
-| 聞こえたら | 答え |
-|-----------|------|
-| SFTP | Transfer Family |
-| 固定IP / UDP / IoT / MQTT | Global Accelerator |
-| キャッシュ / 静的 / SPA | CloudFront |
-| DNS / 名前解決 | Route 53 |
-| DynamoDB + 変更最小 | DAX |
-| RDS + キャッシュ | Redis |
-| セッション / ランキング | Redis |
-| S3アップロード高速 | Transfer Acceleration |
-| オンプレ + 安定 | Direct Connect |
-| オンプレ + 簡単 | VPN |
-| 既存Kafka | MSK |
-| 35日より前 | 手動スナップショット |
-| コンプライアンス監査 + S3 | Standard-IA |
-| 中断リスク最小 | capacity-optimized |
-| 15分超 | AWS Batch |
-| Pod + IAM | IRSA |
-| Pod + 共有ディスク | EFS |
-| 不正検知 | GuardDuty |
-| 脆弱性 | Inspector |
-| S3個人情報 | Macie |
-| フロント簡単 | Amplify |
-| ローテーション | Secrets Manager |
-| 設定値安い | SSM |
-| Webhookだけ | Function URL |
-| WAF / throttling | API Gateway |
-| 可用性 | Multi-AZ |
-| 読み取り速く | リードレプリカ |
-| 拒否したいIP | NACL |
-| S3/DynamoDB無料接続 | Gateway Endpoint |
-| io3 | 存在しない（罠） |
+| 聞こえたら                   | 答え                    |
+| ----------------------- | --------------------- |
+| SFTP                    | Transfer Family       |
+| 固定IP / UDP / IoT / MQTT | Global Accelerator    |
+| キャッシュ / 静的 / SPA        | CloudFront            |
+| DNS / 名前解決              | Route 53              |
+| DynamoDB + 変更最小         | DAX                   |
+| RDS + キャッシュ             | Redis                 |
+| セッション / ランキング           | Redis                 |
+| S3アップロード高速              | Transfer Acceleration |
+| オンプレ + 安定               | Direct Connect        |
+| オンプレ + 簡単               | VPN                   |
+| 既存Kafka                 | MSK                   |
+| 35日より前                  | 手動スナップショット            |
+| コンプライアンス監査 + S3         | Standard-IA           |
+| 中断リスク最小                 | capacity-optimized    |
+| 15分超                    | AWS Batch             |
+| Pod + IAM               | IRSA                  |
+| Pod + 共有ディスク            | EFS                   |
+| 不正検知                    | GuardDuty             |
+| 脆弱性                     | Inspector             |
+| S3個人情報                  | Macie                 |
+| フロント簡単                  | Amplify               |
+| ローテーション                 | Secrets Manager       |
+| 設定値安い                   | SSM                   |
+| Webhookだけ               | Function URL          |
+| WAF / throttling        | API Gateway           |
+| 可用性                     | Multi-AZ              |
+| 読み取り速く                  | リードレプリカ               |
+| 拒否したいIP                 | NACL                  |
+| S3/DynamoDB無料接続         | Gateway Endpoint      |
+| io3                     | 存在しない（罠）              |
 
 ---
 
@@ -786,36 +524,36 @@ Backup & Restore
 
 ---
 
-## 付録：全体マインドマップ
+## 付録：Obsidian用マインドマップ（折りたたみ用）
 
 ```mermaid
 mindmap
   root((AWS SAA))
     接続
-      VPN
-      Direct Connect
-      Peering
-      TGW
-      GW Endpoint
+      VPN 簡単
+      DX 専用線
+      Peering 2VPC
+      TGW 多数
+      GW EP S3無料
     ストレージ
-      S3 IT
+      S3 不明→IT
       EBS gp3
-      EFS
+      EFS Linux
     DB
-      Aurora
-      Multi-AZ
-      Read Replica
-      DAX
+      Aurora 速い
+      Multi-AZ 守
+      RR 読
+      DAX Dynamo
     配信
-      Route53
-      CloudFront
-      Global Accelerator
+      R53 DNS
+      CF HTTP
+      GA TCP
     キーワード
-      SFTP
-      MSK
-      Batch
+      SFTP Transfer
+      Kafka MSK
+      15分 Batch
 ```
 
 ---
 
-*対応: [[教科書-AWS-SAA]] · 図形白板: [[メモリツリー-AWS-SAA.canvas]]*
+*対応教科書: [[教科書-AWS-SAA]]*
